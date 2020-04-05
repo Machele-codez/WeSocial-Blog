@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Posts | WeSocial{% endblock  %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    {% block pre_post %}{% endblock  %}
+    {% block post_content %}{% endblock  %}
+    {% block post_post %}{% endblock  %}
+  </div>
+</div>
+{% endblock  %}

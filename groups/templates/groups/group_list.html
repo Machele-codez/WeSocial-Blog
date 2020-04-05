@@ -1,0 +1,44 @@
+{% extends 'groups/group_base.html' %}
+
+    {% block pre_group %}
+        <div class="col-sm-4">
+
+            <h1>Groups</h1>
+            <p>Welcome to the groups page</p>
+
+            {% if user.is_authenticated %}
+            <p>Hello <a href="{% url 'posts:user_posts' username=user.username%}">@{{user.username}}</a></p>
+            <a href="{% url 'groups:create' %}" class="btn btn-warning btn-lg">
+                <i class="fa fa-plus" aria-hidden="true"></i> Create New Group
+            </a>
+            {% endif %}
+
+        </div>
+    {% endblock  %}
+
+    {% block group_content %}
+        <div class="col-sm-8">
+          <div class="list-group">
+            {% for group in group_list %}
+                <a class="list-group-item" href="{% url 'groups:detail' slug=group.slug %}">
+                    <h2 class="list-group-item-heading">
+                        {{group.name}}
+                    </h2>
+                    <div class='list-group-item-text'>
+                        {{group.description_html|safe}}
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <span class="badge badge-secondary badge-pill">{{group.members.count}}</span>
+                                <span>member{{group.members.count|pluralize}}</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <span class="badge badge-secondary badge-pill">{{group.posts.count}}</span>
+                                <span>post{{group.posts.count|pluralize}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+          </div>
+        </div>
+    {% endblock  %}

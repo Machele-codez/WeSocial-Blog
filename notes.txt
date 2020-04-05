@@ -1,0 +1,7 @@
+SELECT_RELATED VS PREFETCH_RELATED
+
+select_related:
+It just returns the objects of a model that is related (O2O or FK) to the model passed as an argument.
+  eg. If there are two models Group and Post and there exists one-to-many relationship between Group and Post then:
+  >>> Post.objects.select_related('group')
+     returns a queryset of all posts that have a relation to group 

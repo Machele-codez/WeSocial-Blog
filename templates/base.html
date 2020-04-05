@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}We Social{% endblock  %}</title>
+    
+    <!-- ! MAINTAIN THIS ORDER FOR PROPER FUNCTIONING -->
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'bs4/css/bootstrap.min.css' %}">
+    <script src="{% static 'bs4/jquery.js' %}"></script>
+    <script src="{% static 'bs4/popper.js' %}"></script>
+    <script src="{% static 'bs4/js/bootstrap.min.js' %}"></script>
+
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/546832c0ab.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'faw/css/all.min.css' %}">
+    <script src="{% static 'faw/js/all.min.js' %}"></script>
+    
+    <!--custom-->
+    <link rel="stylesheet" href="{% static 'wesocial/master.css' %}">
+ 
+
+</head>
+
+<body>
+    <nav class='navbar-expand-sm bg-light p-2 size'>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-layer-group"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <a href="{% url 'home' %}" class="navbar-brand ml-4">We Social</a>
+            <ul class="navbar-nav mr-4">
+                
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a href="{% url 'posts:create' %}" class="nav-link">Post</a></li>
+                <li class="nav-item"><a href="{% url 'groups:list' %}" class="nav-link">Groups</a></li>
+                <li class="nav-item"><a href="{% url 'groups:create' %}" class="nav-link">Create Group</a></li>
+                <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a></li>
+                
+                {% else %}
+                <li class="nav-item"><a href="{% url 'groups:list' %}" class="nav-link">Groups</a></li>
+                <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="{% url 'accounts:signup' %}" class="nav-link">Sign Up</a></li>
+                {% endif %}
+
+                    
+            </ul>
+        </div>
+    </nav>
+    
+    
+    {% block content %}
+    {% endblock  %}
+
+</body>
+</html>

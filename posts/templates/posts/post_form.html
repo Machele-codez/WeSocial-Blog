@@ -1,0 +1,17 @@
+{% extends 'posts/post_base.html' %}
+
+{% load crispy_forms_tags %}
+
+<div class="col-sm-1"></div>
+
+{% block content %}
+    <div class="col-sm-10">
+        <form method='post'>
+            {% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value="Post" class='btn btn-secondary btn-lg'>
+        </form>      
+    </div>
+{% endblock  %}
+
+<div class="col-sm-1"></div>

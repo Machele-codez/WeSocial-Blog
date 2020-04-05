@@ -1,0 +1,22 @@
+<div>
+    <p>{{post}}</p>
+    <p>{{post.user}}</p>
+    <p>
+        By
+        <a href="{% url 'posts:user_posts' username=post.user.username %}">@{{post.user}}</a>
+        at
+        <a href="{% url 'posts:detail' username=post.user.username pk=post.pk %}">{{post.date_posted}}</a>
+        in
+        <a href="{% url 'groups:detail' slug=post.group.slug %}">{{post.group}}</a>
+    </p>
+    <p>
+        
+        {% if user.is_authenticated and user == post.user%}
+            <a class='btn btn-sm btn-warning' href="{% url 'posts:delete' pk=post.pk %}">
+                <i class="fa fa-trash" aria-hidden="true"></i>Delete
+            </a>
+        {% endif %}
+            
+    </p>
+<hr>
+</div>
